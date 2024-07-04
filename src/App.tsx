@@ -1,14 +1,12 @@
-import { Burger, AppShell } from "@mantine/core"
-
+import { MainScreen } from "./components/MainScreen"
+import { PokemonList } from "./components"
 
 function App() {
 
   return (
-    <AppShell>
-      <AppShell.Header>
-        <Burger>opened</Burger>
-      </AppShell.Header>
-    </AppShell>
+    <MainScreen>
+      <PokemonList />
+    </MainScreen>
   )
 }
 
