@@ -1,4 +1,5 @@
-import { Burger, AppShell, Title, Center } from "@mantine/core"
+import { Burger, AppShell, Title, Flex, Button } from "@mantine/core"
+import { useLocalStorage } from "@mantine/hooks"
 
 type HeaderProps = {
   opened: boolean
@@ -6,6 +7,12 @@ type HeaderProps = {
 }
 
 export function Header({ opened, toggle }: HeaderProps) {
+  const [, setUser] = useLocalStorage<{ email: string, password: string } | null>({ key: "user" })
+
+  const logout = () => {
+    setUser(null)
+  }
+
   return (
     <AppShell.Header>
       <Burger
@@ -14,7 +21,11 @@ export function Header({ opened, toggle }: HeaderProps) {
         hiddenFrom="sm"
         size="sm"
       />
-      <Center><Title order={1}>React-Pokedex</Title></Center>
+      <Flex justify="space-between">
+        <Title order={1}>React-Pokedex</Title>
+
+        <Button onClick={logout}>Logout</Button>
+      </Flex>
     </AppShell.Header>
   )
 }

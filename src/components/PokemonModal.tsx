@@ -11,9 +11,8 @@ type PokemonModalProps = {
 export function PokemonModal({ pokemon, opened, close }: PokemonModalProps) {
   return (
     <>
-      <Modal opened={opened} onClose={close} title={pokemon.name.toUpperCase()} size="xl">
+      <Modal opened={opened} onClose={close} title={pokemon.name.toUpperCase()} centered size="xl">
         <Flex direction="column">
-
           <Flex>
             {pokemon.sprites.front_default ? <img src={pokemon.sprites.front_default} alt={pokemon.name} /> : null}
             {pokemon.sprites.back_default ? <img src={pokemon.sprites.back_default} alt={pokemon.name} /> : null}

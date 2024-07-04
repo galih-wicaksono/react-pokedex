@@ -1,4 +1,4 @@
-import { Card, Flex, Text } from "@mantine/core"
+import { Card, Flex, Text, Skeleton } from "@mantine/core"
 import useFetchPokemon from "../hooks/useFetchPokemon"
 import { LikeButton } from "./LikeButton"
 import { useGetLike } from "../hooks/useGetLike"
@@ -23,7 +23,9 @@ export function PokemonCard({ name, skip, onClick }: PokemonCardProps) {
 
   if (loading) {
     return (
-      <pre>loading...</pre>
+      <Card style={{ cursor: "pointer" }} onClick={() => onClick?.(data)} >
+        <Skeleton />
+      </Card>
     )
   }
 

@@ -41,9 +41,7 @@ export function PokemonList() {
           })
         }
       </Grid>
-      {selectedPokemon ?
-        <PokemonModal pokemon={selectedPokemon} opened={selectedPokemon ? true : false} close={() => setSelectedPokemon(null)} /> : null
-      }
+      {selectedPokemon && <PokemonModal pokemon={selectedPokemon} opened={selectedPokemon ? true : false} close={() => setSelectedPokemon(null)} />}
     </Flex>
   )
 }

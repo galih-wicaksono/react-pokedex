@@ -1,7 +1,7 @@
 import { AppShell } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import { Header } from "./Header"
-import { PokemonListContextProvider } from "./PokemonListProvider"
+import { Header } from "../components/Header"
+import { PokemonListContextProvider } from "../components/PokemonListProvider"
 
 import { useLocalStorage } from "@mantine/hooks"
 
