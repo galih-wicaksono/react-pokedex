@@ -1,4 +1,4 @@
-import { Burger, AppShell } from "@mantine/core"
+import { Burger, AppShell, Title, Center } from "@mantine/core"
 
 type HeaderProps = {
   opened: boolean
@@ -14,7 +14,7 @@ export function Header({ opened, toggle }: HeaderProps) {
         hiddenFrom="sm"
         size="sm"
       />
-      <div>Logo</div>
+      <Center><Title order={1}>React-Pokedex</Title></Center>
     </AppShell.Header>
   )
 }

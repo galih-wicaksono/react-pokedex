@@ -2,17 +2,16 @@ import { Card, Flex, Text } from "@mantine/core"
 import useFetchPokemon from "../hooks/useFetchPokemon"
 import { LikeButton } from "./LikeButton"
 import { useGetLike } from "../hooks/useGetLike"
-import { useDisclosure } from '@mantine/hooks';
-import { PokemonModal } from "./PokemonModal";
+import { Pokemon } from "pokenode-ts"
 
 type PokemonCardProps = {
   name: string
   skip?: boolean
+  onClick?: (pokemon: Pokemon) => void
 }
 
-export function PokemonCard({ name, skip }: PokemonCardProps) {
+export function PokemonCard({ name, skip, onClick }: PokemonCardProps) {
   const { isLiked, setLiked } = useGetLike(name)
-  const [opened, { open, close }] = useDisclosure(false);
 
   const { data, loading } = useFetchPokemon(name, {
     skip: skip
@@ -30,7 +29,7 @@ export function PokemonCard({ name, skip }: PokemonCardProps) {
 
   return (
     <>
-      <Card style={{ cursor: "pointer" }} onClick={open} >
+      <Card style={{ cursor: "pointer" }} onClick={() => onClick?.(data)} >
         <Flex direction="column">
           <Flex justify="space-between">
             <Text>
@@ -41,9 +40,6 @@ export function PokemonCard({ name, skip }: PokemonCardProps) {
           <img src={data?.sprites.front_default ?? ""} alt={data?.name} />
         </Flex>
       </Card>
-      {data ?
-        <PokemonModal pokemon={data} opened={opened} close={close} /> : null
-      }
     </>
   )
 }

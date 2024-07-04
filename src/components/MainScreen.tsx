@@ -12,10 +12,14 @@ type MainScreenProps = {
 }
 
 export const MainScreen = ({ children }: MainScreenProps) => {
-  const [isLoggedIn] = useLocalStorage({ key: "isLoggedIn", defaultValue: false })
+  const [user] = useLocalStorage<{ email: string, password: string } | null>({
+    key: "user",
+    defaultValue: null
+  })
+
   const [opened, { toggle }] = useDisclosure(false)
 
-  if (!isLoggedIn) {
+  if (!user) {
     return <LoginScreen />
   }
 

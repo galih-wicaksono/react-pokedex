@@ -5,6 +5,12 @@ import { useState } from "react"
 export function LoginScreen() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const [, setDefaultUser] = useLocalStorage<{ email: string, password: string } | null>({
+    key: "user",
+    defaultValue: null
+  })
+
   const [defaultEmail] = useLocalStorage<string>({
     key: "email",
     defaultValue: "user@email.com"
@@ -12,19 +18,16 @@ export function LoginScreen() {
 
   const [defaultPassword] = useLocalStorage({
     key: "password",
-    defaultValue: "user@email.com"
-  })
-
-  const [isLoggedIn, setIsLoggedIn] = useLocalStorage({
-    key: "isLoggedIn",
-    defaultValue: "user@email.com"
+    defaultValue: "password"
   })
 
   const handleSubmit = (e: React.FormEvent<HTMLDivElement>) => {
     e.preventDefault()
-    console.log({ email, password })
+
     if (email === defaultEmail && password === defaultPassword) {
-      setIsLoggedIn(true)
+      setDefaultUser({
+        email, password
+      })
     }
   }
 

@@ -6,15 +6,18 @@ type LikeButtonProps = ActionIconProps & {
   onClick?: () => void
 }
 
-
 export function LikeButton({ isLiked, onClick, ...props }: LikeButtonProps) {
+
   return (
     <ActionIcon
       size="md"
       variant={isLiked ? "filled" : "light"}
       aria-label="ActionIcon with size as a number"
       color={isLiked ? "red" : "gray"}
-      onClick={onClick}
+      onClick={(e) => {
+        e.stopPropagation()
+        onClick?.()
+      }}
       {...props}
     >
       <IconHeart style={{ width: rem(24), height: rem(24) }} />

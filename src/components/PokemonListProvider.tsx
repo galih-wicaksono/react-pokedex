@@ -11,7 +11,7 @@ type Props = {
 
 export const PokemonListContextProvider = ({ children }: Props) => {
   const context = useContext(PokemonListContext)
-  const { data, loading } = useFetchPokemonList({ limit: 10 })
+  const { data, loading } = useFetchPokemonList({ limit: 100 })
 
   if (!context) {
     throw new Error("usePokemonListContext must be used within a PokemonListProvider")
